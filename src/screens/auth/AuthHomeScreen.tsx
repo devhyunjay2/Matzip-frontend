@@ -17,6 +17,13 @@ const AuthHomeScreen = ({navigation}: AuthHomeScreenPops) => {
             navigation.navigate(authNavigations.LOGIN);
           }}
         />
+        <CustomButton
+          label={'회원가입으로 이동'}
+          onPress={() => {
+            navigation.navigate(authNavigations.SIGNUP);
+          }}
+          variant="outlined"
+        />
       </View>
     </SafeAreaView>
   );
