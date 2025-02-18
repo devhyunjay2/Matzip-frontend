@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {Dimensions, Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import CustomButton from '../../components/CustomButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -9,24 +9,51 @@ import {authNavigations} from '../../constants';
 type AuthHomeScreenPops = StackScreenProps<AuthStackParamList>;
 const AuthHomeScreen = ({navigation}: AuthHomeScreenPops) => {
   return (
-    <SafeAreaView>
-      <View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.imageComtainer}>
+        <Image
+          resizeMode="contain"
+          style={styles.image}
+          source={require('../../assets/MATZIP.png')}
+        />
+      </View>
+      <View style={styles.buttonContainer}>
         <CustomButton
-          label={'로그인화면으로 이동'}
+          label={'로그인 하기'}
           onPress={() => {
             navigation.navigate(authNavigations.LOGIN);
           }}
         />
         <CustomButton
-          label={'회원가입으로 이동'}
+          variant="outlined"
+          label={'회원가입 하기'}
           onPress={() => {
             navigation.navigate(authNavigations.SIGNUP);
           }}
-          variant="outlined"
         />
       </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    margin: 30,
+    alignItems: 'center',
+  },
+  imageComtainer: {
+    flex: 1.5,
+    width: Dimensions.get('screen').width / 2,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  buttonContainer: {
+    flex: 1,
+    gap: 10,
+  },
+});
 
 export default AuthHomeScreen;
