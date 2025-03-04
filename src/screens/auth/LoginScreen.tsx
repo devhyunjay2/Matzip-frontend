@@ -6,6 +6,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import CustomButton from '../../components/CustomButton';
 
 import {validateLogin} from '../../utils';
+import useAuth from '../../hooks/queries/useAuth';
 
 const LoginScreen = () => {
   const passwordRef = useRef<TextInput | null>(null);
@@ -15,7 +16,9 @@ const LoginScreen = () => {
     validate: validateLogin,
   });
 
+  const {loginMutation} = useAuth();
   const handleSubmit = () => {
+    loginMutation.mutate(login.values);
     console.log(login.values);
   };
   return (
