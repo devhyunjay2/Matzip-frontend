@@ -20,26 +20,15 @@ const SignupScreen = () => {
 
   const handleSubmit = () => {
     const {email, password} = signup.values;
-    console.log(signup.values);
-    console.log('회원가입 submit 호출1');
-
-    // if (signupMutation) {
-    //   console.log('signupMutation 정의 되어있음');
-    //   return;
-    // }
-    console.log(signupMutation, 'signupMutation호출');
 
     signupMutation.mutate(
       {email, password},
       {
         onSuccess: () => {
-          console.log('회원가입 submit 호출1.5');
-
           loginMutation.mutate({email, password});
         },
       },
     );
-    console.log('회원가입 submit 호출2');
   };
   return (
     <SafeAreaView style={styles.constainer}>
