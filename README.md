@@ -77,3 +77,12 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+✅react-query(tanstack query) 사용한 이유
+ 1. Data Caching 
+ 유니크한 키값으로 데이터를 저장해 동일한 네트워크 요청 발생시 저장된 값을 재사용 하여 불필요한 네트워크 요청을 방지()
+
+ 2. 네트워크 상태 제공 (loading, error, success)
+ 3. 네트워크 통신 실페시 3번의 refetching 제공공
+
+
