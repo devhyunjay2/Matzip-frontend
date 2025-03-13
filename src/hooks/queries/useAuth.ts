@@ -15,6 +15,7 @@ import {UseMutationCustomOptions} from '../../types/common';
 function useSignup(mutationOptions?: UseMutationCustomOptions) {
   return useMutation({
     mutationFn: postSignup,
+
     ...mutationOptions,
   });
 }
@@ -24,6 +25,7 @@ function useLogin(mutationOptions?: UseMutationCustomOptions) {
     mutationFn: postLogin,
     onSuccess: ({accessToken, refreshToken}) => {
       setEncryptStorage('refreshToken', refreshToken);
+      // 디폴트로 헤더에 토큰을 넣어서 통신
       setHeader('Authorization', `Bearer ${accessToken}`);
     },
     //성공실패와 관련없이 실행
@@ -78,6 +80,7 @@ function useLogout() {
   return useMutation({
     mutationFn: logout,
     onSuccess: () => {
+      console.log('로그아웃성공');
       removeHeader('Authorization');
       removeEncryptStorage('refreshToken');
     },
@@ -91,8 +94,9 @@ function useAuth() {
     // enable: refreshTokenQuery.isSuccess,
   });
   const isLogin = getProfileQuery.isSuccess;
+
   const loginMutation = useLogin();
-  const logout = useLogout();
+  const logoutMutation = useLogout();
 
   return {
     signupMutation,
@@ -100,7 +104,7 @@ function useAuth() {
     loginMutation,
     isLogin,
     getProfileQuery,
-    logout,
+    logoutMutation,
   };
 }
 
